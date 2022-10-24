@@ -5,7 +5,8 @@
 #include <string.h>
 
 /* You should choose last 2-digits of your 800-number as BUF_SIZE
- * Suggested value: between 0 and 400  */
+ * Suggested value: between 0 and 400  
+   Value used: 14 */
 #ifndef BUF_SIZE
 #define BUF_SIZE 24
 #endif
@@ -25,14 +26,17 @@ int main(int argc, char **argv)
     char str[517];
     FILE *badfile;
 
-     /* Change the size of the dummy array to randomize the parameters
-       for this lab. Need to use the array at least once */
+     /* When ran without BADFILE existing, it uses dummy array instead
+	    Used for determining memory allocations */
     char dummy[BUF_SIZE];  memset(dummy, 0, BUF_SIZE);
 
-    badfile = fopen("badfile", "r");
-    fread(str, sizeof(char), 517, badfile);
-    bof(dummy);
-	// bof(str);
+    if (badfile = fopen("badfile", "r") != NULL) {
+		fread(str, sizeof(char), 517, badfile);
+		bof(str);
+	}
+	else
+		bof(dummy);
+	
     printf("Returned Properly\n");
     return 1;
 }
