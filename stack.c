@@ -30,7 +30,8 @@ int main(int argc, char **argv)
 	    Used for determining memory allocations */
     char dummy[BUF_SIZE];  memset(dummy, 0, BUF_SIZE);
 
-    if (badfile = fopen("badfile", "r") != NULL) {
+	badfile = fopen("badfile", "r");
+    if (badfile != NULL) {
 		fread(str, sizeof(char), 517, badfile);
 		bof(str);
 	}
